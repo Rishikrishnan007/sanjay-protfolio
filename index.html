@@ -45,8 +45,11 @@
             font-weight: 400;
         }
 
-        background: rgba(15, 23, 42, 0.98); /* Changed from 0.9 to 0.98 */
-        border-bottom: 1px solid var(--border);
+        h1, h2, h3, h4, h5, .serif {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            line-height: 1.2;
+        }
 
         .container {
             max-width: 1200px;
@@ -59,6 +62,11 @@
             position: relative;
         }
 
+        /* FIX: Add main wrapper to push content below header */
+        main {
+            margin-top: 80px; /* This pushes all content below the fixed header */
+        }
+
         /* Header & Navigation */
         header {
             position: fixed;
@@ -69,13 +77,14 @@
             padding: 1.5rem 0;
             transition: var(--transition);
             backdrop-filter: blur(10px);
-            background: rgba(15, 23, 42, 0.9);
+            background: rgba(15, 23, 42, 0.98); /* Made more opaque */
+            border-bottom: 1px solid var(--border);
         }
 
         header.scrolled {
             padding: 1rem 0;
             box-shadow: var(--shadow);
-            background: rgba(15, 23, 42, 0.95);
+            background: rgba(15, 23, 42, 0.98);
         }
 
         .header-container {
@@ -141,14 +150,13 @@
             color: var(--light);
         }
 
-        /* Hero Section */
+        /* Hero Section - FIXED: Removed padding-top, adjusted height */
         .hero {
-            min-height: 100vh;
+            min-height: calc(100vh - 80px); /* Account for header height */
             display: flex;
             align-items: center;
             position: relative;
             overflow: hidden;
-            padding-top: 5rem;
         }
 
         .hero-bg {
@@ -714,6 +722,29 @@
             animation: float 6s ease-in-out infinite;
         }
 
+        /* Scroll Progress */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            z-index: 1001;
+            transition: width 0.1s ease;
+        }
+
+        /* Particles */
+        #particles-js {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
         /* Responsive */
         @media (max-width: 992px) {
             .hero-title {
@@ -798,29 +829,6 @@
                 grid-template-columns: 1fr;
             }
         }
-
-        /* Scroll Progress */
-        .scroll-progress {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 0%;
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            z-index: 1001;
-            transition: width 0.1s ease;
-        }
-
-        /* Particles */
-        #particles-js {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-            pointer-events: none;
-        }
     </style>
 </head>
 <body>
@@ -854,283 +862,286 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-bg"></div>
-        <div class="container">
-            <div class="hero-content">
-                <span class="hero-subtitle">Mechanical Design Engineer</span>
-                <h1 class="hero-title">Precision Engineering & <span>Innovative Design</span></h1>
-                <p class="hero-description">Specializing in 3D Modeling, SPM Design, and Automation Testing Stations. Transforming complex requirements into elegant, manufacturable solutions with meticulous attention to detail and engineering excellence.</p>
-                
-                <div class="cta-buttons">
-                    <a href="#projects" class="btn btn-primary">
-                        <i class="fas fa-briefcase"></i>
-                        View My Work
-                    </a>
-                    <a href="#contact" class="btn btn-outline">
-                        <i class="fas fa-paper-plane"></i>
-                        Get In Touch
-                    </a>
+    <!-- Main Content - Wrapped to push content below header -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero" id="home">
+            <div class="hero-bg"></div>
+            <div class="container">
+                <div class="hero-content">
+                    <span class="hero-subtitle">Mechanical Design Engineer</span>
+                    <h1 class="hero-title">Precision Engineering & <span>Innovative Design</span></h1>
+                    <p class="hero-description">Specializing in 3D Modeling, SPM Design, and Automation Testing Stations. Transforming complex requirements into elegant, manufacturable solutions with meticulous attention to detail and engineering excellence.</p>
+                    
+                    <div class="cta-buttons">
+                        <a href="#projects" class="btn btn-primary">
+                            <i class="fas fa-briefcase"></i>
+                            View My Work
+                        </a>
+                        <a href="#contact" class="btn btn-outline">
+                            <i class="fas fa-paper-plane"></i>
+                            Get In Touch
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- About Section -->
-    <section id="about">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-subtitle">About Me</span>
-                <h2 class="section-title">Design & Engineering</h2>
-            </div>
-            
-            <div class="about-content">
-                <div class="about-text">
-                    <h3>Crafting Precision Mechanical Solutions</h3>
-                    <p>I'm a dedicated Mechanical Design Engineer with expertise in developing sophisticated design concepts, 3D modelling, and detailed drafting for jigs & fixtures, Special Purpose Machines (SPM), and EMS & automation testing stations.</p>
-                    <p>My approach combines technical precision with creative problem-solving, ensuring every design is not only functional but also optimized for manufacturing, assembly, and long-term performance.</p>
+        <!-- About Section -->
+        <section id="about">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-subtitle">About Me</span>
+                    <h2 class="section-title">Design & Engineering</h2>
+                </div>
+                
+                <div class="about-content">
+                    <div class="about-text">
+                        <h3>Crafting Precision Mechanical Solutions</h3>
+                        <p>I'm a dedicated Mechanical Design Engineer with expertise in developing sophisticated design concepts, 3D modelling, and detailed drafting for jigs & fixtures, Special Purpose Machines (SPM), and EMS & automation testing stations.</p>
+                        <p>My approach combines technical precision with creative problem-solving, ensuring every design is not only functional but also optimized for manufacturing, assembly, and long-term performance.</p>
+                        
+                        <div class="skills-grid">
+                            <div class="skill-category">
+                                <h4><i class="fas fa-cogs"></i> Core Competencies</h4>
+                                <div class="skill-list">
+                                    <span class="skill-tag">3D Modelling</span>
+                                    <span class="skill-tag">Drafting & GD&T</span>
+                                    <span class="skill-tag">DFMA</span>
+                                    <span class="skill-tag">Engineering Calculations</span>
+                                    <span class="skill-tag">Material Selection</span>
+                                    <span class="skill-tag">SPM Design</span>
+                                    <span class="skill-tag">Pneumatic Circuits</span>
+                                    <span class="skill-tag">Cost Estimation</span>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-category">
+                                <h4><i class="fas fa-desktop"></i> Software & Tools</h4>
+                                <div class="skill-list">
+                                    <span class="skill-tag">SolidWorks</span>
+                                    <span class="skill-tag">Creo Parametric</span>
+                                    <span class="skill-tag">Festo FluidDraw</span>
+                                    <span class="skill-tag">CAM350</span>
+                                    <span class="skill-tag">SAP</span>
+                                    <span class="skill-tag">AutoCAD</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     
-                    <div class="skills-grid">
-                        <div class="skill-category">
-                            <h4><i class="fas fa-cogs"></i> Core Competencies</h4>
-                            <div class="skill-list">
-                                <span class="skill-tag">3D Modelling</span>
-                                <span class="skill-tag">Drafting & GD&T</span>
-                                <span class="skill-tag">DFMA</span>
-                                <span class="skill-tag">Engineering Calculations</span>
-                                <span class="skill-tag">Material Selection</span>
-                                <span class="skill-tag">SPM Design</span>
-                                <span class="skill-tag">Pneumatic Circuits</span>
-                                <span class="skill-tag">Cost Estimation</span>
+                    <div class="about-text">
+                        <div class="contact-card">
+                            <div class="contact-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Education</h4>
+                                <p>B.E. Mechanical Engineering<br>GPA: 8.78</p>
                             </div>
                         </div>
                         
-                        <div class="skill-category">
-                            <h4><i class="fas fa-desktop"></i> Software & Tools</h4>
-                            <div class="skill-list">
-                                <span class="skill-tag">SolidWorks</span>
-                                <span class="skill-tag">Creo Parametric</span>
-                                <span class="skill-tag">Festo FluidDraw</span>
-                                <span class="skill-tag">CAM350</span>
-                                <span class="skill-tag">SAP</span>
-                                <span class="skill-tag">AutoCAD</span>
+                        <div class="contact-card">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Location</h4>
+                                <p>Bengaluru, Karnataka, India</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-card">
+                            <div class="contact-icon">
+                                <i class="fas fa-language"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Languages</h4>
+                                <p>Tamil (Native)<br>English (Professional)</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                
-                <div class="about-text">
-                    <div class="contact-card">
-                        <div class="contact-icon">
-                            <i class="fas fa-graduation-cap"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h4>Education</h4>
-                            <p>B.E. Mechanical Engineering<br>GPA: 8.78</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-card">
-                        <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h4>Location</h4>
-                            <p>Bengaluru, Karnataka, India</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-card">
-                        <div class="contact-icon">
-                            <i class="fas fa-language"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h4>Languages</h4>
-                            <p>Tamil (Native)<br>English (Professional)</p>
-                        </div>
-                    </div>
-                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Experience Section -->
-    <section id="experience">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-subtitle">Career Journey</span>
-                <h2 class="section-title">Professional Experience</h2>
-            </div>
-            
-            <div class="timeline">
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <span class="timeline-date">Nov 2024 - Present</span>
-                        <h3 class="timeline-title">Mechanical Design Engineer</h3>
-                        <span class="timeline-company">Schneider Electric Pvt Ltd | Bengaluru</span>
-                        <p>Working on advanced automation and testing solutions in a global engineering environment, focusing on precision design and innovative problem-solving.</p>
-                    </div>
+        <!-- Experience Section -->
+        <section id="experience">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-subtitle">Career Journey</span>
+                    <h2 class="section-title">Professional Experience</h2>
                 </div>
                 
-                <div class="timeline-item">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-content">
-                        <span class="timeline-date">Jun 2022 - Nov 2024</span>
-                        <h3 class="timeline-title">Mechanical Design Engineer</h3>
-                        <span class="timeline-company">Procyon TechSolutions Pvt Ltd | Bengaluru</span>
-                        <ul class="timeline-list">
-                            <li>Developed design concepts based on customer RFQ requirements for OEM projects</li>
-                            <li>Created MFMEA documents and synoptics for assembly and automation processes</li>
-                            <li>Performed engineering calculations for critical machine components</li>
-                            <li>Prepared comprehensive BOMs and managed procurement through SAP</li>
-                            <li>Designed pneumatic circuits and validated designs against DFM/DFA principles</li>
-                            <li>Coordinated with customers and vendors for project alignment</li>
-                        </ul>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <span class="timeline-date">Nov 2024 - Present</span>
+                            <h3 class="timeline-title">Mechanical Design Engineer</h3>
+                            <span class="timeline-company">Schneider Electric Pvt Ltd | Bengaluru</span>
+                            <p>Working on advanced automation and testing solutions in a global engineering environment, focusing on precision design and innovative problem-solving.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <span class="timeline-date">Jun 2022 - Nov 2024</span>
+                            <h3 class="timeline-title">Mechanical Design Engineer</h3>
+                            <span class="timeline-company">Procyon TechSolutions Pvt Ltd | Bengaluru</span>
+                            <ul class="timeline-list">
+                                <li>Developed design concepts based on customer RFQ requirements for OEM projects</li>
+                                <li>Created MFMEA documents and synoptics for assembly and automation processes</li>
+                                <li>Performed engineering calculations for critical machine components</li>
+                                <li>Prepared comprehensive BOMs and managed procurement through SAP</li>
+                                <li>Designed pneumatic circuits and validated designs against DFM/DFA principles</li>
+                                <li>Coordinated with customers and vendors for project alignment</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Projects Section -->
-    <section id="projects">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-subtitle">Portfolio</span>
-                <h2 class="section-title">Featured Projects</h2>
-            </div>
-            
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-header">
-                        <div class="project-icon">
-                            <i class="fas fa-tachometer-alt"></i>
-                        </div>
-                        <h3 class="project-title">Gas Pressure Regulator Testing</h3>
-                        <p class="project-description">Designed combined pneumatic layout and fixture for Gen1 & Gen2 pressure regulators with pipe fittings for a set of 40 fixtures.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Pneumatic Design</span>
-                            <span class="tech-tag">Fixture Design</span>
-                            <span class="tech-tag">Testing Station</span>
-                        </div>
-                    </div>
-                    <div class="project-body">
-                        <p>Complete testing solution for pressure regulators with integrated pneumatic circuits and precision measurement capabilities.</p>
-                    </div>
+        <!-- Projects Section -->
+        <section id="projects">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-subtitle">Portfolio</span>
+                    <h2 class="section-title">Featured Projects</h2>
                 </div>
                 
-                <div class="project-card">
-                    <div class="project-header">
-                        <div class="project-icon">
-                            <i class="fas fa-cogs"></i>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-header">
+                            <div class="project-icon">
+                                <i class="fas fa-tachometer-alt"></i>
+                            </div>
+                            <h3 class="project-title">Gas Pressure Regulator Testing</h3>
+                            <p class="project-description">Designed combined pneumatic layout and fixture for Gen1 & Gen2 pressure regulators with pipe fittings for a set of 40 fixtures.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Pneumatic Design</span>
+                                <span class="tech-tag">Fixture Design</span>
+                                <span class="tech-tag">Testing Station</span>
+                            </div>
                         </div>
-                        <h3 class="project-title">Automatic Motor Test Bench</h3>
-                        <p class="project-description">Designed an automatic test bench with capacity of 18,000 RPM, 60 Nm torque, and integrated noise reduction booth.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">High RPM</span>
-                            <span class="tech-tag">Torque Testing</span>
-                            <span class="tech-tag">Automation</span>
-                        </div>
-                    </div>
-                    <div class="project-body">
-                        <p>Advanced testing station with three bearing towers, changeover pulley system, and automated motor engagement mechanism.</p>
-                    </div>
-                </div>
-                
-                <div class="project-card">
-                    <div class="project-header">
-                        <div class="project-icon">
-                            <i class="fas fa-conveyor-belt"></i>
-                        </div>
-                        <h3 class="project-title">Controller Assembly & EOL Testing</h3>
-                        <p class="project-description">Designed manual assembly stations and developed both manual and motorized conveyors for assembly line.</p>
-                        <div class="project-tech">
-                            <span class="tech-tag">Assembly Line</span>
-                            <span class="tech-tag">Conveyor System</span>
-                            <span class="tech-tag">EOL Testing</span>
+                        <div class="project-body">
+                            <p>Complete testing solution for pressure regulators with integrated pneumatic circuits and precision measurement capabilities.</p>
                         </div>
                     </div>
-                    <div class="project-body">
-                        <p>Complete assembly solution with multiple stations for joining child parts to parent base and integrated end-of-line testing.</p>
+                    
+                    <div class="project-card">
+                        <div class="project-header">
+                            <div class="project-icon">
+                                <i class="fas fa-cogs"></i>
+                            </div>
+                            <h3 class="project-title">Automatic Motor Test Bench</h3>
+                            <p class="project-description">Designed an automatic test bench with capacity of 18,000 RPM, 60 Nm torque, and integrated noise reduction booth.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">High RPM</span>
+                                <span class="tech-tag">Torque Testing</span>
+                                <span class="tech-tag">Automation</span>
+                            </div>
+                        </div>
+                        <div class="project-body">
+                            <p>Advanced testing station with three bearing towers, changeover pulley system, and automated motor engagement mechanism.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card">
+                        <div class="project-header">
+                            <div class="project-icon">
+                                <i class="fas fa-conveyor-belt"></i>
+                            </div>
+                            <h3 class="project-title">Controller Assembly & EOL Testing</h3>
+                            <p class="project-description">Designed manual assembly stations and developed both manual and motorized conveyors for assembly line.</p>
+                            <div class="project-tech">
+                                <span class="tech-tag">Assembly Line</span>
+                                <span class="tech-tag">Conveyor System</span>
+                                <span class="tech-tag">EOL Testing</span>
+                            </div>
+                        </div>
+                        <div class="project-body">
+                            <p>Complete assembly solution with multiple stations for joining child parts to parent base and integrated end-of-line testing.</p>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Contact Section -->
-    <section id="contact">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-subtitle">Get In Touch</span>
-                <h2 class="section-title">Let's Connect</h2>
-            </div>
-            
-            <div class="contact-container">
-                <div class="contact-info">
-                    <div class="contact-card">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h4>Email</h4>
-                            <p>robinkrish009@gmail.com</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-card">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone-alt"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h4>Phone</h4>
-                            <p>+91 6374479119</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-card">
-                        <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h4>Location</h4>
-                            <p>Bengaluru, Karnataka<br>India</p>
-                        </div>
-                    </div>
-                    
-                    <div class="social-links">
-                        <a href="https://www.linkedin.com/in/sanjay-krishnan-80504916a/" class="social-link" target="_blank">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="mailto:robinkrish009@gmail.com" class="social-link">
-                            <i class="fas fa-envelope"></i>
-                        </a>
-                        <a href="tel:+916374479119" class="social-link">
-                            <i class="fas fa-phone"></i>
-                        </a>
-                    </div>
+        <!-- Contact Section -->
+        <section id="contact">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-subtitle">Get In Touch</span>
+                    <h2 class="section-title">Let's Connect</h2>
                 </div>
                 
-                <div class="contact-info">
-                    <div class="contact-card" style="height: 100%; display: flex; flex-direction: column; justify-content: center;">
-                        <div class="contact-icon">
-                            <i class="fas fa-briefcase"></i>
+                <div class="contact-container">
+                    <div class="contact-info">
+                        <div class="contact-card">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Email</h4>
+                                <p>robinkrish009@gmail.com</p>
+                            </div>
                         </div>
-                        <div class="contact-details">
-                            <h4>Open to Opportunities</h4>
-                            <p>I'm actively seeking new challenges in mechanical design, SPM development, and automation projects. Feel free to reach out for collaborations or opportunities.</p>
-                            <a href="mailto:robinkrish009@gmail.com" class="btn btn-primary" style="margin-top: 1.5rem; display: inline-block;">
-                                <i class="fas fa-paper-plane"></i>
-                                Send Message
+                        
+                        <div class="contact-card">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Phone</h4>
+                                <p>+91 6374479119</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-card">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Location</h4>
+                                <p>Bengaluru, Karnataka<br>India</p>
+                            </div>
+                        </div>
+                        
+                        <div class="social-links">
+                            <a href="https://www.linkedin.com/in/sanjay-krishnan-80504916a/" class="social-link" target="_blank">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <a href="mailto:robinkrish009@gmail.com" class="social-link">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                            <a href="tel:+916374479119" class="social-link">
+                                <i class="fas fa-phone"></i>
                             </a>
                         </div>
                     </div>
+                    
+                    <div class="contact-info">
+                        <div class="contact-card" style="height: 100%; display: flex; flex-direction: column; justify-content: center;">
+                            <div class="contact-icon">
+                                <i class="fas fa-briefcase"></i>
+                            </div>
+                            <div class="contact-details">
+                                <h4>Open to Opportunities</h4>
+                                <p>I'm actively seeking new challenges in mechanical design, SPM development, and automation projects. Feel free to reach out for collaborations or opportunities.</p>
+                                <a href="mailto:robinkrish009@gmail.com" class="btn btn-primary" style="margin-top: 1.5rem; display: inline-block;">
+                                    <i class="fas fa-paper-plane"></i>
+                                    Send Message
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <!-- Footer -->
     <footer>
@@ -1294,4 +1305,3 @@
     </script>
 </body>
 </html>
-
